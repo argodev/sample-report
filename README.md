@@ -24,6 +24,17 @@ This is a simple example of using Python to generate a report.
    . venv/bin/activate
    ```
 
+1. Install some of the dependencies
+   ``` bash
+   pip install --upgrade pip
+   pip install jinja2
+   pip install pandas
+   pip install xhtml2pdf
+   ```
+
+1. Once you open the directory in VS Code, set the interpreter to the current `venv`.
+
+
 ## Tips
 
 The notes in the section are *purely* optional, but listed in case they are helpful.

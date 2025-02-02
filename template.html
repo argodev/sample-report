@@ -1,0 +1,71 @@
+<html>
+<head>
+<style>
+    body { font-family: Verdana, Arial, sans-serif; font-size: 1.2em;}
+    .accountaddress { font-size: 1.2em; }
+    .accountname { font-weight: bold; }
+    .title { text-align: right; }
+    .pagetitle {font-weight: bold; font-size: 2.0em;}
+    .detail { font-weight: bold; font-size: 1.5em;}
+    div.header { text-align: right; }
+    div.thankyou {
+        border: 2pt solid lightgray;
+        padding: 5px;
+    }
+    table { width: 100%; 
+        /* border-collapse: collapse; */
+    }
+    tr.header {
+        border-bottom: 2pt solid lightgray;
+        text-align: left;
+    }
+    tr.datarow { border-bottom: 1pt solid lightgray; padding-top: 2pt;}
+    .headerleft { text-align: left; }
+    .headerright { text-align: right; }
+    td.total {
+        text-align: left;
+        font-weight: bold;
+    }
+    tr.footer { border-top: 2pt solid lightgray; padding-top: 2pt;}
+</style>
+</head>
+<body>
+    <div id="account_address" class="accountaddress">
+        <span class="accountname">{{name}}</span><br>
+        {% if address|length %}
+        {{address}}<br>
+        {% if address2|length %}
+        {{address2}}<br>
+        {% endif %}
+        {{city}}, {{state}} {{zip}}<br>
+        {% endif %}
+        {% if account_num|length %}
+        Church Account #: {{account_num}}
+        {% endif %}
+    </div>
+
+    <!-- HTML Content -->
+    <br />
+    <table>
+        <tr class="header">
+            <th class="headerleft" style="width:20%;">Quantity</th>
+            <th class="headerleft" style="width:20%;">Customer #</th>                
+            <th class="headerleft" style="width:40%;">Name/Address</th>
+            <th class="headerleft" style="width:20%;">Type</th>
+        </tr>
+        {% for row in data_rows %}
+        <tr class="datarow"><td>{{ row['Quantity'] }}</td><td>{{ row['SubscriberAccount'] }}</td>
+            <td>{{ row['FullName'] }}<br/>
+                {{ row['Address'] }}<br/>
+                {% if address2|length %}
+                {{address2}}<br>
+                {% endif %}
+                {{city}}, {{state}} {{zip}}
+            </td>
+            <td>{{ row['Edition'] }}</td></tr>
+        {% endfor %}
+        <tr class="footer"><td class="total">{{ quantity }}</td><td></td></tr>
+    </table>
+
+</body>
+</html>
